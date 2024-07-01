@@ -1,9 +1,5 @@
 package calculadora;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  *
  * @author Lenovo
@@ -301,53 +297,42 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnNumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber1ActionPerformed
         addNumber("1");
-        finished("1");
     }//GEN-LAST:event_btnNumber1ActionPerformed
 
     private void btnNumber2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber2ActionPerformed
         addNumber("2");
-        finished("2");
     }//GEN-LAST:event_btnNumber2ActionPerformed
 
     private void btnNumber3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber3ActionPerformed
         addNumber("3");
-        finished("3");
     }//GEN-LAST:event_btnNumber3ActionPerformed
 
     private void btnNumber4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber4ActionPerformed
         addNumber("4");
-        finished("4");
     }//GEN-LAST:event_btnNumber4ActionPerformed
 
     private void btnNumber5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber5ActionPerformed
-        System.out.println("pantalla " + txtPantalla.getText());
         addNumber("5");
-        finished("5");
     }//GEN-LAST:event_btnNumber5ActionPerformed
 
     private void btnNumber6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber6ActionPerformed
         addNumber("6");
-        finished("6");
     }//GEN-LAST:event_btnNumber6ActionPerformed
 
     private void btnNumber7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber7ActionPerformed
         addNumber("7");
-        finished("7");
     }//GEN-LAST:event_btnNumber7ActionPerformed
 
     private void btnNumber8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber8ActionPerformed
         addNumber("8");
-        finished("8");
     }//GEN-LAST:event_btnNumber8ActionPerformed
 
     private void btnNumber9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber9ActionPerformed
         addNumber("9");
-        finished("9");
     }//GEN-LAST:event_btnNumber9ActionPerformed
 
     private void btnNumber0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber0ActionPerformed
         addNumber("0");
-        finished("0");
     }//GEN-LAST:event_btnNumber0ActionPerformed
 
     private void btnPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlusActionPerformed
@@ -402,8 +387,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEqualsActionPerformed
 
     private void btnPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntoActionPerformed
-        addNumber(".");
-        finished(".");
+        addPoint();
     }//GEN-LAST:event_btnPuntoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -438,6 +422,7 @@ public class Ventana extends javax.swing.JFrame {
                 return;
             }
             txtResult.setText(formatNumber(result));
+            finish = true;
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -473,7 +458,21 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     private void addNumber(String n) {
+        if (finish) {
+            clearSystems();
+            finish = false;
+        }
         txtPantalla.setText(txtPantalla.getText() + n);
+        addNumberAux(n);
+    }
+    
+    private void addPoint(){
+        if (txtPantalla.getText().isEmpty() || finish) {
+            //Poner sonido de inhabilitado
+            return;
+        }
+        txtPantalla.setText(txtPantalla.getText() + ".");
+        addNumberAux(".");
     }
 
     private void addNumberAux(String n) {
@@ -486,7 +485,6 @@ public class Ventana extends javax.swing.JFrame {
         txtResult.setText("");
         firts_number = null;
         second_number = null;
-        finish = true;
     }
 
     private void clearSystem() {
@@ -505,19 +503,14 @@ public class Ventana extends javax.swing.JFrame {
         return format;
     }
 
-    private void finished(String n) {
-        if (finish) {
-            clearSystems();
-            txtPantallaAux.setText(txtPantalla.getText());
-            finish = false;
-        } else {
-            addNumberAux(n);
-        }
-    }
-
     private void remove() {
         String exp = txtPantalla.getText();
-        if (exp.length() > 0 && operator != null) {
+        if (finish) {
+            clearSystems();
+            finish = false;
+            return;
+        }
+        if (exp.length() > 0 || operator != null) {
             exp = exp.substring(0, exp.length() - 1);
             txtPantalla.setText(exp);
             txtPantallaAux.setText(exp);
