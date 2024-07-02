@@ -1,5 +1,7 @@
 package calculadora;
 
+import static constans.Operators.*;
+import java.text.DecimalFormat;
 /**
  *
  * @author Lenovo
@@ -8,13 +10,16 @@ public class Ventana extends javax.swing.JFrame {
 
     private Double firts_number;
     private Double second_number;
+    private Double resultado;
+
+    private String sFirtsNumber;
+    private String sSecondNumber;
+
     private String operator;
     private boolean finish = false;
 
     public Ventana() {
-        this.setLocationRelativeTo(null);
         initComponents();
-        txtPantalla.setVisible(false);
     }
 
     /**
@@ -41,14 +46,13 @@ public class Ventana extends javax.swing.JFrame {
         btnPunto = new javax.swing.JButton();
         btnNumber0 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnFactorial = new javax.swing.JButton();
         btnX = new javax.swing.JButton();
         btnMinus = new javax.swing.JButton();
         btnPlus = new javax.swing.JButton();
         btnEquals = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        txtPantalla = new javax.swing.JLabel();
         txtPantallaAux = new javax.swing.JLabel();
         txtResult = new javax.swing.JLabel();
 
@@ -195,13 +199,13 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 50, 50));
 
-        jButton4.setText("+/-");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnFactorial.setText("!");
+        btnFactorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnFactorialActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 50, 50));
+        jPanel2.add(btnFactorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 50, 50));
 
         btnX.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exbtnlight.png"))); // NOI18N
@@ -268,10 +272,6 @@ public class Ventana extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 300, 320));
 
-        txtPantalla.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtPantalla.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jPanel1.add(txtPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 30, 20, 20));
-
         txtPantallaAux.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         txtPantallaAux.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jPanel1.add(txtPantallaAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 260, 40));
@@ -336,54 +336,32 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNumber0ActionPerformed
 
     private void btnPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlusActionPerformed
-        if (!txtPantalla.getText().isEmpty()) {
-            finish = false;
-            if (operator != null) {
-                operar();
-            }
-            addNumberAux("+");
-            firts_number = Double.valueOf(txtPantalla.getText());
-            operator = "+";
-            clearSystem();
-        }
+        operationBtn(ADDITION);
     }//GEN-LAST:event_btnPlusActionPerformed
 
     private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
-        if (!txtPantalla.getText().isEmpty()) {
-            finish = false;
-            if (operator != null) {
-                operar();
-            }
-            addNumberAux("-");
-            firts_number = Double.valueOf(txtPantalla.getText());
-            operator = "-";
-            clearSystem();
-        }
+        operationBtn(SUBTRACTION);
     }//GEN-LAST:event_btnMinusActionPerformed
 
     private void btnXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXActionPerformed
-        if (!txtPantalla.getText().isEmpty()) {
-            finish = false;
-            if (operator != null) {
-                operar();
-            }
-            addNumberAux("*");
-            firts_number = Double.valueOf(txtPantalla.getText());
-            operator = "*";
-            clearSystem();
-        }
+        operationBtn(MULTIPLICATION);
     }//GEN-LAST:event_btnXActionPerformed
 
     private void btnEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualsActionPerformed
-        if (!txtPantalla.getText().isEmpty()) {
-            if (operator == null) {
-                txtResult.setText(txtPantalla.getText());
+        if (sFirtsNumber == null) {
+            return;
+        }
+        if (sSecondNumber == null && sFirtsNumber != null) {
+            if (operator != null) {
+                //Poner sonido
                 return;
             }
-            operar();
-            txtResult.setText(txtPantalla.getText());
-            finish = true;
+            txtResult.setText(sFirtsNumber);
+            return;
         }
+        operar();
+        txtResult.setText(formatNumber(resultado));
+        finish = true;
     }//GEN-LAST:event_btnEqualsActionPerformed
 
     private void btnPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntoActionPerformed
@@ -399,25 +377,15 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivActionPerformed
-        if (!txtPantalla.getText().isEmpty()) {
-            finish = false;
-            if (operator != null) {
-                operar();
-            }
-            addNumberAux("/");
-            firts_number = Double.valueOf(txtPantalla.getText());
-            operator = "/";
-            clearSystem();
-        }
+        operationBtn(DIVISION);
     }//GEN-LAST:event_btnDivActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (!txtPantalla.getText().isEmpty()) {
-            Double number = Double.valueOf(txtPantalla.getText());
+        if (sFirtsNumber != null) {
+            Double number = Double.valueOf(sFirtsNumber);
             Double result = number / 100;
             if (operator != null) {
                 String exp = firts_number + operator + result;
-                txtPantalla.setText(result.toString());
                 txtPantallaAux.setText(exp);
                 return;
             }
@@ -426,35 +394,58 @@ public class Ventana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnFactorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFactorialActionPerformed
+        if (sFirtsNumber != null) {
+            Double number = Double.valueOf(sFirtsNumber);
+            Double result = calculateFactorial(number);
+            if (operator != null) {
+                number = Double.valueOf(sSecondNumber);
+                result = calculateFactorial(number);
+                String exp = firts_number + operator + result;
+                txtPantallaAux.setText(exp);
+                return;
+            }
+            txtResult.setText(formatNumber(result));
+            finish = true;
+        }
+    }//GEN-LAST:event_btnFactorialActionPerformed
 
     private void operar() {
-        second_number = Double.valueOf(txtPantalla.getText());
+        second_number = Double.valueOf(sSecondNumber);
         Double result;
         switch (operator) {
-            case "+":
+            case ADDITION:
                 result = firts_number + second_number;
-                txtPantalla.setText(formatNumber(result));
                 break;
-            case "-":
+            case SUBTRACTION:
                 result = firts_number - second_number;
-                txtPantalla.setText(formatNumber(result));
                 break;
-            case "*":
+            case MULTIPLICATION:
                 result = firts_number * second_number;
-                txtPantalla.setText(formatNumber(result));
                 break;
-            case "/":
+            case DIVISION:
                 result = firts_number / second_number;
-                txtPantalla.setText(formatNumber(result));
                 break;
             default:
                 throw new AssertionError();
         }
         operator = null;
-        System.out.println("result = " + result);
+        firts_number = result;
+        sFirtsNumber = firts_number.toString();
+        resultado = result;
+    }
+
+    private void operationBtn(String op) {
+        if (sFirtsNumber == null) {
+            return;
+        }
+        firts_number = Double.valueOf(sFirtsNumber);
+        finish = false;
+        if (operator != null) {
+            operar();
+        }
+        addNumberAux(op);
+        operator = op;
     }
 
     private void addNumber(String n) {
@@ -462,16 +453,25 @@ public class Ventana extends javax.swing.JFrame {
             clearSystems();
             finish = false;
         }
-        txtPantalla.setText(txtPantalla.getText() + n);
-        addNumberAux(n);
+        txtPantallaAux.setText(txtPantallaAux.getText() + n);
+        if (operator == null) {
+            sFirtsNumber = txtPantallaAux.getText();
+        } else {
+            addSecondNumber();
+        }
     }
-    
-    private void addPoint(){
-        if (txtPantalla.getText().isEmpty() || finish) {
+
+    private void addSecondNumber() {
+        String exp = txtPantallaAux.getText();
+        int i = exp.lastIndexOf(operator) + 1;
+        sSecondNumber = txtPantallaAux.getText().substring(i, exp.length());
+    }
+
+    private void addPoint() {
+        if (txtPantallaAux.getText().isEmpty() || finish) {
             //Poner sonido de inhabilitado
             return;
         }
-        txtPantalla.setText(txtPantalla.getText() + ".");
         addNumberAux(".");
     }
 
@@ -480,15 +480,12 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     private void clearSystems() {
-        clearSystem();
         clearSystemAux();
         txtResult.setText("");
         firts_number = null;
         second_number = null;
-    }
-
-    private void clearSystem() {
-        txtPantalla.setText("");
+        sFirtsNumber = null;
+        sSecondNumber = null;
     }
 
     private void clearSystemAux() {
@@ -496,26 +493,44 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     private String formatNumber(Double n) {
-        String format = n.toString();
         if (n % 1 == 0) {
-            return format.substring(0, format.length() - 2);
+            return n.intValue()+"";
         }
-        return format;
+        return n.toString();
     }
 
     private void remove() {
-        String exp = txtPantalla.getText();
+        String exp = txtPantallaAux.getText();
         if (finish) {
             clearSystems();
             finish = false;
             return;
         }
         if (exp.length() > 0 || operator != null) {
+            if (sSecondNumber != null && sSecondNumber.length() > 0 && operator != null) {
+                sSecondNumber = sSecondNumber.substring(0, sSecondNumber.length() - 1);
+            }
+            if (sFirtsNumber != null && sFirtsNumber.length() > 0 && operator == null) {
+                sFirtsNumber = sFirtsNumber.substring(0, sFirtsNumber.length() - 1);
+            }
+            if (exp.endsWith(ADDITION) || 
+                    exp.endsWith(SUBTRACTION) ||
+                    exp.endsWith(MULTIPLICATION) || 
+                    exp.endsWith(DIVISION)) {
+                operator = null;
+            }
             exp = exp.substring(0, exp.length() - 1);
-            txtPantalla.setText(exp);
             txtPantallaAux.setText(exp);
         }
         //Sino poner sonido de boton inhabilitado
+    }
+
+    private Double calculateFactorial(Double n) {
+        Double factorial = 1.0;
+        for (int i = 1; i <= n; i++) {
+            factorial *= i;
+        }
+        return factorial;
     }
 
     /**
@@ -556,6 +571,7 @@ public class Ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDiv;
     private javax.swing.JButton btnEquals;
+    private javax.swing.JButton btnFactorial;
     private javax.swing.JButton btnMinus;
     private javax.swing.JButton btnNumber0;
     private javax.swing.JButton btnNumber1;
@@ -572,11 +588,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btnX;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel txtPantalla;
     private javax.swing.JLabel txtPantallaAux;
     private javax.swing.JLabel txtResult;
     // End of variables declaration//GEN-END:variables
