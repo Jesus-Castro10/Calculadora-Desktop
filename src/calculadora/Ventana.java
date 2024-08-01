@@ -1,7 +1,14 @@
 package calculadora;
 
 import static constans.Operators.*;
-import java.text.DecimalFormat;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /**
  *
  * @author Lenovo
@@ -20,6 +27,7 @@ public class Ventana extends javax.swing.JFrame {
 
     public Ventana() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -53,7 +61,7 @@ public class Ventana extends javax.swing.JFrame {
         btnEquals = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        txtPantallaAux = new javax.swing.JLabel();
+        txtPantalla = new javax.swing.JLabel();
         txtResult = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +73,6 @@ public class Ventana extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNumber7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber7.setText("7");
         btnNumber7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber7.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +82,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 50, 50));
 
-        btnNumber8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber8.setText("8");
         btnNumber8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber8.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +91,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 50, 50));
 
-        btnNumber9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber9.setText("9");
         btnNumber9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber9.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +100,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 50, 50));
 
-        btnNumber4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber4.setText("4");
         btnNumber4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber4.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +109,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 50, 50));
 
-        btnNumber5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber5.setText("5");
         btnNumber5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber5.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +118,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 50, 50));
 
-        btnNumber6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber6.setText("6");
         btnNumber6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber6.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +127,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 50, 50));
 
-        btnNumber1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber1.setText("1");
         btnNumber1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber1.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +136,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 50, 50));
 
-        btnNumber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber2.setText("2");
         btnNumber2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber2.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +156,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnDiv, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 50, 50));
 
-        btnNumber3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber3.setText("3");
         btnNumber3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber3.addActionListener(new java.awt.event.ActionListener() {
@@ -166,8 +165,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 50, 50));
 
-        btnPunto.setBackground(new java.awt.Color(0, 0, 0, 0));
-        btnPunto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnPunto.setText(".");
         btnPunto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPunto.addActionListener(new java.awt.event.ActionListener() {
@@ -177,9 +174,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnPunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 50, 50));
 
-        btnNumber0.setBackground(new java.awt.Color(204, 204, 204));
-        btnNumber0.setFont(new java.awt.Font("Tw Cen MT", 0, 32)); // NOI18N
-        btnNumber0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         btnNumber0.setText("0");
         btnNumber0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumber0.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +183,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnNumber0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 50, 50));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         jButton3.setText("<-");
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +244,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel2.add(btnEquals, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 50, 50));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLight.png"))); // NOI18N
         jButton1.setText("C");
         jButton1.setFocusPainted(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -272,9 +264,9 @@ public class Ventana extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 300, 320));
 
-        txtPantallaAux.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        txtPantallaAux.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jPanel1.add(txtPantallaAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 260, 40));
+        txtPantalla.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        txtPantalla.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jPanel1.add(txtPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 260, 40));
 
         txtResult.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
         txtResult.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -386,7 +378,7 @@ public class Ventana extends javax.swing.JFrame {
             Double result = number / 100;
             if (operator != null) {
                 String exp = firts_number + operator + result;
-                txtPantallaAux.setText(exp);
+                txtPantalla.setText(exp);
                 return;
             }
             txtResult.setText(formatNumber(result));
@@ -402,7 +394,7 @@ public class Ventana extends javax.swing.JFrame {
                 number = Double.valueOf(sSecondNumber);
                 result = calculateFactorial(number);
                 String exp = firts_number + operator + result;
-                txtPantallaAux.setText(exp);
+                txtPantalla.setText(exp);
                 return;
             }
             txtResult.setText(formatNumber(result));
@@ -424,6 +416,10 @@ public class Ventana extends javax.swing.JFrame {
                 result = firts_number * second_number;
                 break;
             case DIVISION:
+                if (second_number == 0.0) {
+                    result = Double.NaN;
+                    break;
+                }
                 result = firts_number / second_number;
                 break;
             default:
@@ -453,22 +449,22 @@ public class Ventana extends javax.swing.JFrame {
             clearSystems();
             finish = false;
         }
-        txtPantallaAux.setText(txtPantallaAux.getText() + n);
+        txtPantalla.setText(txtPantalla.getText() + n);
         if (operator == null) {
-            sFirtsNumber = txtPantallaAux.getText();
+            sFirtsNumber = txtPantalla.getText();
         } else {
             addSecondNumber();
         }
     }
 
     private void addSecondNumber() {
-        String exp = txtPantallaAux.getText();
+        String exp = txtPantalla.getText();
         int i = exp.lastIndexOf(operator) + 1;
-        sSecondNumber = txtPantallaAux.getText().substring(i, exp.length());
+        sSecondNumber = txtPantalla.getText().substring(i, exp.length());
     }
 
     private void addPoint() {
-        if (txtPantallaAux.getText().isEmpty() || finish) {
+        if (txtPantalla.getText().isEmpty() || finish) {
             //Poner sonido de inhabilitado
             return;
         }
@@ -476,7 +472,7 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     private void addNumberAux(String n) {
-        txtPantallaAux.setText(txtPantallaAux.getText() + n);
+        txtPantalla.setText(txtPantalla.getText() + n);
     }
 
     private void clearSystems() {
@@ -489,18 +485,18 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     private void clearSystemAux() {
-        txtPantallaAux.setText("");
+        txtPantalla.setText("");
     }
 
     private String formatNumber(Double n) {
         if (n % 1 == 0) {
-            return n.intValue()+"";
+            return n.intValue() + "";
         }
         return n.toString();
     }
 
     private void remove() {
-        String exp = txtPantallaAux.getText();
+        String exp = txtPantalla.getText();
         if (finish) {
             clearSystems();
             finish = false;
@@ -513,14 +509,14 @@ public class Ventana extends javax.swing.JFrame {
             if (sFirtsNumber != null && sFirtsNumber.length() > 0 && operator == null) {
                 sFirtsNumber = sFirtsNumber.substring(0, sFirtsNumber.length() - 1);
             }
-            if (exp.endsWith(ADDITION) || 
-                    exp.endsWith(SUBTRACTION) ||
-                    exp.endsWith(MULTIPLICATION) || 
-                    exp.endsWith(DIVISION)) {
+            if (exp.endsWith(ADDITION)
+                    || exp.endsWith(SUBTRACTION)
+                    || exp.endsWith(MULTIPLICATION)
+                    || exp.endsWith(DIVISION)) {
                 operator = null;
             }
             exp = exp.substring(0, exp.length() - 1);
-            txtPantallaAux.setText(exp);
+            txtPantalla.setText(exp);
         }
         //Sino poner sonido de boton inhabilitado
     }
@@ -531,6 +527,20 @@ public class Ventana extends javax.swing.JFrame {
             factorial *= i;
         }
         return factorial;
+    }
+
+    private void sound() {
+        Clip clip = null;
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sonido.wav"));
+            clip = AudioSystem.getClip();
+            clip.open(ais);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.err.println("Error -> " + e.getMessage());
+        }
+        if (clip != null) {
+            clip.start();
+        }
     }
 
     /**
@@ -591,7 +601,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel txtPantallaAux;
+    private javax.swing.JLabel txtPantalla;
     private javax.swing.JLabel txtResult;
     // End of variables declaration//GEN-END:variables
 }

@@ -69,9 +69,6 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnNumber7">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="7"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -86,9 +83,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber8">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="8"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -103,9 +97,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber9">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="9"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -120,9 +111,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber4">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="4"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -137,9 +125,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber5">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="5"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -154,9 +139,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber6">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="6"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -171,9 +153,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber1">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="1"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -188,9 +167,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber2">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="2"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -225,9 +201,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber3">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="3"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -242,12 +215,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnPunto">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Color(0, 0, 0, 0)" type="code"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="."/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -262,15 +229,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNumber0">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tw Cen MT" size="32" style="0"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -285,9 +243,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="&lt;-"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -395,9 +350,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/btnLight.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="C"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -426,7 +378,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="txtPantallaAux">
+        <Component class="javax.swing.JLabel" name="txtPantalla">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="3"/>
